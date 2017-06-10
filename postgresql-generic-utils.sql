@@ -1,3 +1,16 @@
+------------------------------
+--BACKUP & RESTORE WITH PSQL--
+------------------------------
+--Backup all dbs (including roles)
+sudo su postgres -c "pg_dumpall -f /tmp/outputFileName.backup"
+--Restore all
+sudo su postgres -c "psql -f /tmp/outputFileName.backup postgres"
+--Backup one db (without roles)
+sudo su postgres -c "pg_dump -Fc -d dbName -f /tmp/outputFileName.backup"
+--Restore one db
+sudo su postgres -c "pg_restore -d dbName /tmp/outputFileName.backup"
+
+
 -------
 --CSV--
 -------
@@ -85,7 +98,7 @@ CREATE temp TABLE temp_table_name AS (SELECT * FROM table_name);
 --USERS & PERMISSIONS--
 -----------------------
 --Create a read only user manually granting privileges.
-﻿CREATE USER user_name WITH password 'password';
+CREATE USER user_name WITH password 'password';
 GRANT USAGE ON SCHEMA schema_name TO user_name;
 GRANT SELECT ON ALL TABLES IN SCHEMA schema_name TO user_name;
 

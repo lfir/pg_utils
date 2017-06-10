@@ -2,6 +2,12 @@ Generic queries and functions for PostgreSQL. Compiled (and some developed) by A
 Tested on PostgreSQL 9.5.
 
 ##### Contents:
+###### BACKUP & RESTORE WITH PSQL:
+* Backup all databases in the server.
+* Restore all databases from backup file.
+* Backup one database.
+* Restore one database from file.
+
 ###### CSV:
 * Import table/column from CSV file.
 * Import with header (if the first row contains column names).
