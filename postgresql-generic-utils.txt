@@ -23,6 +23,8 @@ COPY column_name FROM '/path/to/csv' DELIMITER ',' CSV HEADER;
 --Export table to CSV.
 COPY table_name TO '/path/to/csv' DELIMITER ',' CSV HEADER;
 
+--Export to CSV from the shell with psql.
+sudo su postgres -c "psql -d dbName -c "copy (select * from tableName) to stdout with csv header;" -o fileName.csv"
 
 ------------------
 --DUPLICATE ROWS--
