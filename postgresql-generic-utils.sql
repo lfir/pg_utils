@@ -1,16 +1,3 @@
-------------------------------
---BACKUP & RESTORE WITH PSQL--
-------------------------------
---Backup all dbs (including roles)
-sudo su postgres -c "pg_dumpall -f /tmp/outputFileName.backup"
---Restore all
-sudo su postgres -c "psql -f /tmp/outputFileName.backup postgres"
---Backup one db (without roles)
-sudo su postgres -c "pg_dump -Fc -d dbName -f /tmp/outputFileName.backup"
---Restore one db
-sudo su postgres -c "pg_restore -d dbName /tmp/outputFileName.backup"
-
-
 -------
 --CSV--
 -------
@@ -22,9 +9,6 @@ COPY column_name FROM '/path/to/csv' DELIMITER ',' CSV HEADER;
 
 --Export table to CSV.
 COPY table_name TO '/path/to/csv' DELIMITER ',' CSV HEADER;
-
---Export to CSV from the shell with psql.
-sudo su postgres -c 'psql -d dbName -c "copy (select * from tableName) to stdout with csv header;" -o fileName.csv'
 
 ------------------
 --DUPLICATE ROWS--
@@ -135,10 +119,4 @@ EXECUTE PROCEDURE grant_select_to_readonly_user();
 SELECT schemaname, viewname FROM pg_catalog.pg_views
 WHERE schemaname NOT IN ('pg_catalog', 'information_schema')
 ORDER BY schemaname, viewname;
-
-
-
-
-
-
 
