@@ -10,6 +10,7 @@ COPY column_name FROM '/path/to/csv' DELIMITER ',' CSV HEADER;
 --Export table to CSV.
 COPY table_name TO '/path/to/csv' DELIMITER ',' CSV HEADER;
 
+
 ------------------
 --DUPLICATE ROWS--
 ------------------
@@ -72,6 +73,7 @@ WHERE
   pg_attribute.attrelid = pg_class.oid AND
   pg_attribute.attnum = any(pg_index.indkey)
  AND indisprimary;
+
 
 -------------------
 --TEMPORARY TABLE--
