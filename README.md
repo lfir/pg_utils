@@ -2,29 +2,29 @@ Generic queries and commands for PostgreSQL.
 Compiled (some developed) and tested by Asta1986 on PostgreSQL 9.5 and Fedora 25.
 
 ##### Contents:
-###### CSV:
-* Import table/column from CSV file.
-* Import with header (if the first row contains column names).
-* Export table to CSV.
+###### [CSV:](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L2)
+* [Import table/column from CSV file.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L4)
+* [Import with header (if the first row contains column names).](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L7)
+* [Export table to CSV.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L10)
 
-###### DUPLICATE ROWS:
-* Compare rows according to values in the columns.
+###### [DUPLICATE ROWS:](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L15)
+* [Compare rows according to values in the columns.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L17)
 
-###### PIVOT TABLES:
-* Using crosstab.
-* Using aggregate_function(case).
+###### [PIVOT TABLES:](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L23)
+* [Using crosstab.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L25)
+* [Using aggregate_function(case).](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L41)
 
-###### TABLE INFO:
-* Get table names.
-* Get information of columns.
-* Get name and type of PK column.
+###### [TABLE INFO:](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L51)
+* [Get table names.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L53)
+* [Get information of columns.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L58)
+* [Get name and type of PK column.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L63)
 
-###### TEMPORARY TABLE:
-* Create a temporary table from the result of query.
+###### [TEMPORARY TABLE:](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L79)
+* [Create a temporary table from the result of query.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L81)
 
-###### USERS & PERMISSIONS:
-* Create a read only user manually.
-* Add privileges to read only user automatically upon creation of new tables, schemas or views.
+###### [USERS & PERMISSIONS:](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L86)
+* [Create a read only user manually.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L88)
+* [Add privileges to read only user automatically upon creation of new tables, schemas or views.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L93)
 
-###### VIEWS:
-* Display user created views.
+###### [VIEWS:](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L118)
+* [Display user created views.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L120)
