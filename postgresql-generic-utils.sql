@@ -2,12 +2,12 @@
 --CSV--
 -------
 --Import table/column from CSV file.
-COPY column_name FROM '/path/to/csv' DELIMITER ',' CSV encoding'latin-1';
+COPY column_name FROM '/path/to/csv' DELIMITER ',' CSV encoding 'latin-1';
 
 --If the first row contains column names.
 COPY column_name FROM '/path/to/csv' DELIMITER ',' CSV HEADER;
 
---Export table to CSV.
+--Export table/query result to CSV.
 COPY table_name TO '/path/to/csv' DELIMITER ',' CSV HEADER;
 
 
@@ -80,6 +80,19 @@ WHERE
 -------------------
 --Create a temporary table from the result of query.
 CREATE temp TABLE temp_table_name AS (SELECT * FROM table_name);
+
+
+----------------
+--TRANSACTIONS--
+----------------
+--Create a transaction block.
+BEGIN;
+UPDATE table_name SET column_name = value0;
+UPDATE table_name SET column_name = value1;
+COMMIT;
+
+--Abort current transaction.
+ROLLBACK;
 
 
 -----------------------
