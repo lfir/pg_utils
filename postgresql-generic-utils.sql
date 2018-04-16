@@ -40,9 +40,9 @@ ct(first_column text, second_column integer, third_column integer);
 
 --Using aggregate_function(case).
 SELECT columnA_name,
-count(CASE WHEN columnB_name = a_value THEN id END) AS a_value_total,
-count(CASE WHEN columnB_name = b_value THEN id END) AS b_value_total,
-count(CASE WHEN columnB_name IS null THEN id END) AS null_total
+count(CASE WHEN columnB_name = a_value THEN 1 END) AS a_value_total,
+count(CASE WHEN columnB_name = b_value THEN 1 END) AS b_value_total,
+count(CASE WHEN columnB_name IS null THEN 1 END) AS null_total
 FROM table_name
 GROUP BY columnA_name ORDER BY 1;
 
