@@ -11,6 +11,39 @@ COPY column_name FROM '/path/to/csv' DELIMITER ',' CSV HEADER;
 COPY table_name TO '/path/to/csv' DELIMITER ',' CSV HEADER;
 
 
+-------------
+--FUNCTIONS--
+-------------
+--Set cell values of text columns in a table to lower case.
+--First parameter is the schema name and the second one the table name.
+CREATE OR REPLACE FUNCTION text_columns_to_lowercase(sch_nm text, tab_nm text)
+    RETURNS void
+LANGUAGE plpgsql
+    AS $f$
+DECLARE
+    col text;
+BEGIN
+    FOR col IN SELECT column_name
+               FROM information_schema.columns
+               WHERE table_name=tab_nm and data_type in ('text', 'char', 'character varying')
+    LOOP
+        EXECUTE format($$ update %I.%I set %I = lower(%I) $$, sch_nm, tab_nm, col, col);
+    END LOOP;
+END;
+$f$;
+
+--Transform a string with google maps point coordinates to WGS84 WKT.
+--ex.: select gmapsCoordsToWKT('-34.618000, -58.388972');
+CREATE OR REPLACE FUNCTION public.gmapsCoordsToWKT(coords text)
+  RETURNS text AS
+$BODY$
+    with sub as (
+        SELECT 'POINT(' || ltrim(split_part($1, ',', 2)) || ' ' || split_part($1, ',', 1) || ')' as p)
+    select st_astext(ST_Transform(ST_GeomFromText(sub.p, 3857), 4326)) from sub;
+$BODY$
+  LANGUAGE sql immutable;
+
+
 ------------------
 --DUPLICATE ROWS--
 ------------------
