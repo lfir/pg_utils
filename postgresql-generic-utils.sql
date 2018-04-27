@@ -14,6 +14,20 @@ COPY table_name TO '/path/to/csv' DELIMITER ',' CSV HEADER;
 -------------
 --FUNCTIONS--
 -------------
+-- Erase all schemas (except system ones) and contained objects in the current database.
+CREATE OR REPLACE FUNCTION erase_all_schemas()
+    RETURNS void
+    AS $f$
+DECLARE
+    sch text;
+BEGIN
+    FOR sch IN SELECT nspname FROM pg_namespace where nspname not like '%pg_%'
+    LOOP
+        EXECUTE format($$ drop SCHEMA %I CASCADE $$, sch);
+    END LOOP;
+END;
+$f$ LANGUAGE plpgsql;
+
 --Set cell values of text columns in a table to lower case.
 --First parameter is the schema name and the second one the table name.
 CREATE OR REPLACE FUNCTION text_columns_to_lowercase(sch_nm text, tab_nm text)
@@ -34,7 +48,7 @@ $f$;
 
 --Transform a string with google maps point coordinates to WGS84 WKT.
 --ex.: select gmapsCoordsToWKT('-34.618000, -58.388972');
-CREATE OR REPLACE FUNCTION public.gmapsCoordsToWKT(coords text)
+CREATE OR REPLACE FUNCTION gmapsCoordsToWKT(coords text)
   RETURNS text AS
 $BODY$
     with sub as (
