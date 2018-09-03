@@ -53,7 +53,7 @@ CREATE OR REPLACE FUNCTION gmapsCoordsToWKT(coords text)
 $BODY$
     with sub as (
         SELECT 'POINT(' || ltrim(split_part($1, ',', 2)) || ' ' || split_part($1, ',', 1) || ')' as p)
-    select st_astext(ST_Transform(ST_GeomFromText(sub.p, 3857), 4326)) from sub;
+    select st_astext(ST_GeomFromText(sub.p, 4326)) from sub;
 $BODY$
   LANGUAGE sql immutable;
 
