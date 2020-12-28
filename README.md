@@ -1,4 +1,6 @@
-Generic queries and commands for PostgreSQL.
+### postgresql-generic-utils.sql
+Generic SQL queries and PLpgSQL functions for PostgreSQL.
+
 Compiled (some written) and tested by Asta1986 on PostgreSQL 13.
 
 ##### Contents:
