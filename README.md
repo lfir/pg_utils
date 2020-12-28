@@ -1,5 +1,5 @@
 Generic queries and commands for PostgreSQL.
-Compiled (some developed) and tested by Asta1986 on PostgreSQL 9.5 and Fedora 25.
+Compiled (some written) and tested by Asta1986 on PostgreSQL 13.
 
 ##### Contents:
 ###### [CSV:](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L2)
@@ -33,7 +33,7 @@ Compiled (some developed) and tested by Asta1986 on PostgreSQL 9.5 and Fedora 25
 
 ###### [USERS & PERMISSIONS:](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L146)
 * [Create a read only user manually.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L148)
-* [Add privileges to read only user automatically upon creation of new tables, schemas or views.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L153)
+* [Add privileges to read only user automatically upon creation of new schemas.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L156)
 
-###### [VIEWS:](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L178)
-* [Display user created views.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L180)
+###### [VIEWS:](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L181)
+* [Display user created views.](https://github.com/Asta1986/pg_utils/blob/master/postgresql-generic-utils.sql#L183)

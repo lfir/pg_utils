@@ -145,13 +145,16 @@ ROLLBACK;
 -----------------------
 --USERS & PERMISSIONS--
 -----------------------
---Create a read only user manually granting privileges.
+--Create a read only user by manually granting and revoking privileges.
+--Revoke default create permission (only needed for schema public).
+REVOKE CREATE ON SCHEMA public FROM public;
 CREATE USER user_name WITH password 'password';
 GRANT USAGE ON SCHEMA schema_name TO user_name;
 GRANT SELECT ON ALL TABLES IN SCHEMA schema_name TO user_name;
+ALTER DEFAULT PRIVILEGES IN SCHEMA schema_name GRANT SELECT ON TABLES TO user_name;
 
---Function and event trigger to add privileges to read only user automatically upon
---creation of new tables, schemas or views.
+--Function and event trigger to add SELECT permission to read only user
+--automatically upon creation of new schemas.
 CREATE OR REPLACE FUNCTION grant_select_to_readonly_user()
     RETURNS event_trigger
 LANGUAGE plpgsql
@@ -161,16 +164,16 @@ DECLARE
 BEGIN
     FOR sch IN SELECT nspname FROM pg_namespace
     LOOP
-		--Replace 'readonly_user' with the actual name of the user.
+		--Replace readonly_user with the actual name of the user.
         EXECUTE format($$ GRANT USAGE ON SCHEMA %I TO readonly_user $$, sch);
-        EXECUTE format($$ GRANT SELECT ON ALL TABLES IN SCHEMA %I TO readonly_user $$, sch);
+        EXECUTE format($$ ALTER DEFAULT PRIVILEGES IN SCHEMA %I GRANT SELECT ON TABLES TO readonly_user $$, sch);
     END LOOP;
 END;
 $f$;
- 
+
 CREATE EVENT TRIGGER grant_select_to_readonly_user
 ON ddl_command_end 
-WHEN TAG IN ('CREATE SCHEMA', 'CREATE TABLE', 'CREATE TABLE AS', 'CREATE VIEW')
+WHEN TAG IN ('CREATE SCHEMA')
 EXECUTE PROCEDURE grant_select_to_readonly_user();
 
 
@@ -181,4 +184,3 @@ EXECUTE PROCEDURE grant_select_to_readonly_user();
 SELECT schemaname, viewname FROM pg_catalog.pg_views
 WHERE schemaname NOT IN ('pg_catalog', 'information_schema')
 ORDER BY schemaname, viewname;
-
